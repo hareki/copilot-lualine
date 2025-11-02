@@ -84,10 +84,16 @@ component.is_sleep = function()
         return false
     end
 
-    if vim.b.copilot_suggestion_auto_trigger == nil then
-        return lazy_require("copilot.config").suggestion.auto_trigger
+    local status, _ = pcall(require, "blink-cmp-copilot")
+
+    if status then
+        return false
     end
-    return vim.b.copilot_suggestion_auto_trigger
+
+    if vim.b.copilot_suggestion_auto_trigger == nil then
+        return not lazy_require("copilot.config").suggestion.auto_trigger
+    end
+    return not vim.b.copilot_suggestion_auto_trigger
 end
 
 return component
