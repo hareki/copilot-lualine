@@ -1,4 +1,5 @@
 local component = {}
+local blinkStatus, _ = pcall(require, "blink-cmp-copilot")
 
 -- From TJDevries
 -- https://github.com/tjdevries/lazy-require.nvim
@@ -84,9 +85,7 @@ component.is_sleep = function()
         return false
     end
 
-    local status, _ = pcall(require, "blink-cmp-copilot")
-
-    if status then
+    if blinkStatus then
         return false
     end
 
