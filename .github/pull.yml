@@ -1,0 +1,5 @@
+version: "1"
+rules:
+  - base: main
+    upstream: AndreM222:main
+    mergeMethod: merge
