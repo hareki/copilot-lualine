@@ -221,6 +221,16 @@ local M = {
         "◑",
         "◒",
     },
+    circle_full = { -- circleFull
+		"󰄰",
+		"󰪞",
+		"󰪟",
+		"󰪠",
+		"󰪢",
+		"󰪣",
+		"󰪤",
+		"󰪥",
+	},
     dots_toggle = { -- toggle
         "⊶",
         "⊷",
