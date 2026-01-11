@@ -1,6 +1,5 @@
 local component = {}
 local blinkStatus, _ = pcall(require, "blink-cmp-copilot")
-local sidekick_available, sidekick_status = pcall(require, "sidekick.status")
 
 -- From TJDevries
 -- https://github.com/tjdevries/lazy-require.nvim
@@ -21,14 +20,6 @@ local s = lazy_require("copilot.status")
 
 local is_current_buffer_attached = function()
     return c.buf_is_attached(vim.api.nvim_get_current_buf())
-end
-
-local function get_sidekick_status()
-    if not sidekick_available then
-        return nil
-    end
-
-    return sidekick_status.get()
 end
 
 ---Check if copilot is enabled
@@ -61,11 +52,6 @@ component.is_error = function()
         return true
     end
 
-    local sk_status = get_sidekick_status()
-    if sk_status and sk_status.kind == "Error" then
-        return true
-    end
-
     return false
 end
 
@@ -82,11 +68,6 @@ component.is_loading = function()
 
     local data = s.data.status
     if data == 'InProgress' then
-        return true
-    end
-
-    local sk_status = get_sidekick_status()
-    if sk_status and (sk_status.busy or sk_status.kind == "Busy") then
         return true
     end
 
